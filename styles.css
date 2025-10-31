@@ -1,0 +1,18 @@
+h1{ font-family: 'Courier New', Courier, monospace;
+ font-weight: 800;
+ font-style: oblique;
+ font-size: 76px;
+ color:red;
+ text-decoration: double wavy,blue ;
+ word-spacing: normal;
+ text-indent: ;
+ background-color: black;
+}
+
+body{
+    
+    
+    border-radius: 50px;
+    background-image: repeating-conic-gradient(pink,red,lightblue);
+    
+}

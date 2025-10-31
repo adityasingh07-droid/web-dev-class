@@ -1,0 +1,56 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,body{
+    height: 100%;
+    width: 100%;
+}
+
+
+body{
+    background-color: teal;
+}
+
+@media (max-width: 600px) and (min-width: 300px){
+    body{
+        background-color: lightblue;
+    }
+}
+
+.parent{
+    border: 2px solid black;
+    display: flex;
+    position: absolute;
+    gap: 10px;
+    justify-content: center;
+    align-content: center;
+}
+
+.box1, .box2, .box3, .box4{
+    height: 100px;
+    width: 100px;
+    margin: 10px;
+    
+}
+.box1{
+    position: relative;
+    background-color: red;
+   
+}
+.box2{
+    position: relative;
+    background-color: blue;
+    
+    
+}
+.box3{
+    position: relative;
+    background-color: green;
+}
+.box4{
+    position: relative;
+    background-color: yellow;
+}
