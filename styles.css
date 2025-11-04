@@ -3,8 +3,11 @@ div{
     width: 200px;
     background-color: red;
      animation-name:  example;
-   animation-duration: 20ss ;
+   animation-duration: 4s ;
     position: relative;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+      
   }
 @keyframes example {
   0% {background-color: aqua;left: 0;top: 0;}
