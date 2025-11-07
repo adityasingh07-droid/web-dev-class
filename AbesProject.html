@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Orango Shop (Unique Dark Theme)</title>
+    <style>
+        body {
+            font-family: 'Montserrat', Arial, sans-serif;
+            background: linear-gradient(120deg, #30024b 50%, #ff9400 100%);
+            margin: 0;
+        }
+        #nav {
+            background: linear-gradient(90deg, #30024b 60%, #ff9400 120%);
+            padding: 22px 0 12px 0;
+            text-align: center;
+            box-shadow: 0 4px 18px #30024b38;
+        }
+        #nav a {
+            color: #ffecb3;
+            margin: 0 26px;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: color 0.21s;
+        }
+        #nav a:hover {
+            color: #ff9400;
+            text-shadow: 0 1px 8px #fff7c1;
+        }
+        h1, h2 {
+            color: #ff9400;
+            margin-top: 29px;
+            margin-bottom: 14px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            font-family: 'Montserrat', Arial, sans-serif;
+            text-shadow: 1px 2px 10px #30024b77;
+        }
+        .container {
+            max-width: 1250px;
+            margin: auto;
+            padding: 32px 13px;
+        }
+        /* Stylish filter bar (pill style) */
+        .pill-bar {
+            display: flex;
+            gap: 18px;
+            margin-bottom: 35px;
+            justify-content: center;
+        }
+        .pill-btn {
+            background: linear-gradient(90deg, #4700b3 55%, #ff9400 180%);
+            color: #fff;
+            border: none;
+            border-radius: 40px;
+            padding: 10px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 12px #30024b32;
+            transition: background 0.17s, color 0.17s;
+        }
+        .pill-btn:hover, .pill-btn.active {
+            background: linear-gradient(90deg, #ff9400 50%, #4700b3 100%);
+            color: #30024b;
+            box-shadow: 0 7px 21px #ee950024;
+        }
+        /* Slider styles */
+        .slider {
+            width: 99%;
+            max-width: 1100px;
+            margin: 28px auto 41px auto;
+            overflow: hidden;
+            border-radius: 30px;
+            position: relative;
+            height: 260px;
+            display: flex;
+            align-items: center;
+            background: #24003b;
+        }
+        .slides {
+            display: flex;
+            transition: transform 0.7s cubic-bezier(0.70, 0.24, 0.58, 1.01);
+            will-change: transform;
+        }
+        .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+            position: relative;
+        }
+        .slide img {
+            width: 100%;
+            max-height: 260px;
+            object-fit: cover;
+            border-radius: 28px;
+            filter: brightness(0.85) blur(0.7px);
+        }
+        .slide-caption {
+            position: absolute;
+            left: 40px;
+            bottom: 20px;
+            background: rgba(255, 148, 0, 0.77);
+            color: #30024b;
+            font-family: inherit;
+            padding: 17px 35px 15px 28px;
+            font-size: 25px;
+            border-radius: 14px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 26px #ff94003f;
+            text-shadow: 0 1px 6px #fff2ab;
+        }
+        .slider-nav {
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        .slider-btn {
+            background: #ffecb3;
+            border: none;
+            color: #4700b3;
+            font-size: 27px;
+            font-weight: bolder;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            cursor: pointer;
+            outline: none;
+            box-shadow: 0 2px 18px #ff940032;
+            transition: background 0.21s, color 0.21s;
+        }
+        .slider-btn:hover {
+            background: #4700b3;
+            color: #fff6db;
+        }
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: flex-start;
+        }
+        .product-card {
+            background: linear-gradient(130deg, #30024b 60%, #ffa726 100%);
+            border-radius: 20px;
+            border: 2.5px solid #ff940061;
+            box-shadow: 0 4px 27px #4700b352;
+            padding: 21px 17px 17px 17px;
+            width: 240px;
+            transition: box-shadow 0.24s, transform 0.18s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .product-card:hover {
+            box-shadow: 0 15px 40px 0 #ffecb38f;
+            transform: scale(1.05);
+            border: 2.5px solid #ff4d00;
+        }
+        .product-card h3 {
+            font-size: 22px;
+            color: #ffecb3;
+            margin-bottom: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-align: center;
+            text-shadow: 0 1px 9px #4700b388;
+        }
+        .product-card p {
+            margin: 8px 0;
+            color: #fff2ab;
+            font-size: 16px;
+            text-align: center;
+        }
+        .product-image {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            border-radius: 15px;
+            background: #ffe0b3;
+            margin-bottom: 13px;
+            box-shadow: 0 2px 14px #ffecb336;
+        }
+        .price {
+            color: #ee9500;
+            font-size: 21px;
+            font-weight: 800;
+            margin: 8px 0 9px 0;
+            text-shadow: 0 2px 8px #fff7c166;
+        }
+        button {
+            background: linear-gradient(90deg, #ff6f00 45%, #4700b3 100%);
+            color: #fff4e1;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 11px;
+            font-size: 17px;
+            font-weight: 800;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            box-shadow: 0 2px 14px #4700b378;
+            transition: background 0.18s, box-shadow 0.26s;
+        }
+        button:hover {
+            background: linear-gradient(90deg, #4700b3 50%, #ff6f00 100%);
+            color: #ffecb3;
+            box-shadow: 0 10px 30px #ffecb38a;
+            font-weight: 800;
+        }
+        input {
+            margin: 8px 0;
+            padding: 10px;
+            border-radius: 9px;
+            border: 1.7px solid #ffecb3;
+            width: 225px;
+            font-size: 16px;
+        }
+        form {
+            margin-top: 27px;
+            background: #370053;
+            padding: 28px 21px;
+            border-radius: 15px;
+            box-shadow: 0 2px 19px #ff6f0038;
+            width: 370px;
+            color: #fff2ab;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .back-btn {
+            background: #ffecb3;
+            color: #4700b3;
+            padding: 12px 23px;
+            margin-top: 23px;
+            margin-bottom: 15px;
+            border-radius: 11px;
+            border: none;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 2px 7px #ff6f0033;
+        }
+        .back-btn:hover {
+            background: #ff6f00;
+            color: #fff;
+        }
+        #cart-items div {
+            border-radius: 14px;
+            background: #ffecb36b;
+            border: 1.7px solid #ffa726;
+            margin: 9px 0;
+            padding: 15px 15px;
+            font-size: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #370053;
+            font-weight: bold;
+        }
+        /* Responsive */
+        @media (max-width: 900px) {
+            .container, form {
+                width: 93%;
+                padding: 8px;
+            }
+            .slider { height: 140px; }
+            .product-list { justify-content: center; gap: 15px; }
+            .pill-bar{ gap:9px;}
+        }
+    </style>
+</head>
+<body>
+    <div id="nav">
+        <a onclick="showPage('home')">Home</a>
+        <a onclick="showPage('cart')">Cart</a>
+        <a onclick="showPage('login')">Login</a>
+        <a onclick="showPage('register')">Register</a>
+    </div>
+
+    <!-- Home Page -->
+    <div id="homePage" class="container">
+        <!-- Slider Banner Section -->
+        <div class="slider" id="slider">
+            <div class="slides" id="slides">
+            </div>
+            <div class="slider-nav">
+                <button class="slider-btn" onclick="prevSlide()">&#10094;</button>
+                <button class="slider-btn" onclick="nextSlide()">&#10095;</button>
+            </div>
+        </div>
+        <h1 style="letter-spacing:3px;">Orango Shop</h1>
+        <div class="pill-bar" id="categoryBar">
+            <!-- Category buttons by JS -->
+        </div>
+        <div class="product-list" id="product-list"></div>
+    </div>
+
+    <!-- Product Details Page -->
+    <div id="productPage" class="container hidden">
+        <div id="product-detail"></div>
+        <button class="back-btn" onclick="showPage('home')">Back to Home</button>
+    </div>
+
+    <!-- Cart Page -->
+    <div id="cartPage" class="container hidden">
+        <h2>Your Cart</h2>
+        <div id="cart-items"></div>
+        <button onclick="checkout()">Checkout</button>
+    </div>
+
+    <!-- Login Page -->
+    <div id="loginPage" class="container hidden">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="email" name="email" placeholder="Email" required /><br>
+            <input type="password" name="password" placeholder="Password" required /><br>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <!-- Register Page -->
+    <div id="registerPage" class="container hidden">
+        <h2>Register</h2>
+        <form id="registerForm">
+            <input type="text" name="name" placeholder="Name" required /><br>
+            <input type="email" name="email" placeholder="Email" required /><br>
+            <input type="password" name="password" placeholder="Password" required /><br>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <script>
+        /* Slider banners */
+        const sliderAds = [
+            {img: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80", caption:"Orango Fest: Electronics up to 70% off!"},
+            {img: "https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?auto=format&fit=crop&w=900&q=80", caption:"Fresh Fruits Sale! Taste the best."},
+            {img: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=900&q=80", caption:"Groceries at lowest price."},
+            {img: "https://images.unsplash.com/photo-1519863884763-ba1e1aff474b?auto=format&fit=crop&w=900&q=80", caption:"New Season Shoes & Clothes."}
+        ];
+        let currentSlide = 0;
+        function renderSlider(){
+            const slidesDiv = document.getElementById('slides');
+            slidesDiv.innerHTML = sliderAds.map(ad => `
+                <div class="slide">
+                    <img src="${ad.img}" alt="Banner"/>
+                    <div class="slide-caption">${ad.caption}</div>
+                </div>
+            `).join('');
+            showSlide(currentSlide);
+        }
+        function showSlide(n){
+            const slides = document.querySelectorAll('.slide');
+            if(n >= slides.length) currentSlide = 0;
+            if(n < 0) currentSlide = slides.length - 1;
+            let offset = -currentSlide * slides[0].clientWidth;
+            document.getElementById('slides').style.transform = translateX(${offset}px);
+        }
+        function nextSlide(){ currentSlide++; showSlide(currentSlide);}
+        function prevSlide(){ currentSlide--; showSlide(currentSlide);}
+        setInterval(()=>{currentSlide++; showSlide(currentSlide);},3000);
+
+        /* Products, categories */
+        const products = [
+            { id: 1, name: "Purple Tee", category:"Clothes", description: "Trendy Unisex T-shirt", price: 315,
+                image: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80"
+            },
+            { id: 2, name: "Run Shoes", category:"Clothes", description: "Comfort Sports Shoes", price: 845,
+                image: "https://images.unsplash.com/photo-1519863884763-ba1e1aff474b?auto=format&fit=crop&w=400&q=80"
+            },
+            { id: 3, name: "SoundWave Pro", category:"Electronics", description: "Bluetooth Headphone", price: 1310,
+                image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=400&q=80"
+            },
+            { id: 4, name: "Glow Watch", category:"Electronics", description: "Analog Watch", price: 635,
+                image: "https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=400&q=80"
+            },
+            { id: 5, name: "Fresh Apple", category:"Fruits", description: "Juicy Apples (1kg)", price: 195,
+                image: "https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?auto=format&fit=crop&w=400&q=80"
+            },
+            { id: 6, name: "Premium Banana", category:"Fruits", description: "Fresh Banana (1 Dozen)", price: 65,
+                image: "https://images.unsplash.com/photo-1574226516831-e1dff420e8e6?auto=format&fit=crop&w=400&q=80"
+            },
+            { id: 7, name: "Daily Tomato", category:"Vegetables", description: "Tomato (1kg)", price: 48,
+                image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+            },
+            { id: 8, name: "Aloo Special", category:"Vegetables", description: "Potato (1kg)", price: 35,
+                image: "https://images.unsplash.com/photo-1542370872-3d6cc3a2378d?auto=format&fit=crop&w=400&q=80"
+            },
+            { id: 9, name: "Gold Rice", category:"Grocery", description: "Basmati Rice (5kg)", price: 445,
+                image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80"
+            },
+            { id: 10, name: "Sundrop Oil", category:"Grocery", description: "Sunflower Oil (1L)", price: 135,
+                image: "https://images.unsplash.com/photo-1506368083636-2e03c245d79b?auto=format&fit=crop&w=400&q=80"
+            }
+        ];
+        const categories = ["All", "Clothes", "Electronics", "Fruits", "Vegetables", "Grocery"];
+        /* Render pill-bar (category) */
+        let filteredCategory = "All";
+        function renderCategoryBar(){
+            let bar = document.getElementById('categoryBar');
+            bar.innerHTML = categories.map(cat => 
+                <button class="pill-btn${(filteredCategory==cat?' active':'')}" onclick="filterProducts('${cat}')">${cat}</button>
+            ).join('');
+        }
+        function showPage(page, id=null){
+            document.getElementById('homePage').classList.add('hidden');
+            document.getElementById('productPage').classList.add('hidden');
+            document.getElementById('cartPage').classList.add('hidden');
+            document.getElementById('loginPage').classList.add('hidden');
+            document.getElementById('registerPage').classList.add('hidden');
+            if(page === 'home'){
+                document.getElementById('homePage').classList.remove('hidden');
+                renderSlider();
+                renderCategoryBar();
+                filterProducts(filteredCategory);
+            }
+            if(page === 'product'){
+                document.getElementById('productPage').classList.remove('hidden');
+                renderProductDetails(id);
+            }
+            if(page === 'cart'){
+                document.getElementById('cartPage').classList.remove('hidden');
+                renderCart();
+            }
+            if(page === 'login'){
+                document.getElementById('loginPage').classList.remove('hidden');
+            }
+            if(page === 'register'){
+                document.getElementById('registerPage').classList.remove('hidden');
+            }
+        }
+        function filterProducts(cat){
+            filteredCategory = cat; renderCategoryBar();
+            let filteredProducts = (cat==="All")?products:products.filter(p=>p.category===cat);
+            const productList=document.getElementById('product-list');
+            productList.innerHTML="";
+            if(filteredProducts.length===0){
+                productList.innerHTML="<div style='font-size:20px; margin:15px;color:#ffecb3;'>No products found.</div>";
+                return;
+            }
+            filteredProducts.forEach(product=>{
+                const card=document.createElement('div');
+                card.className='product-card';
+                card.innerHTML=`
+                    <img src="${product.image}" class="product-image" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>${product.description}</p>
+                    <p><b>Category:</b> ${product.category}</p>
+                    <div class="price">Rs. ${product.price}</div>
+                    <a style="color:#ffecb3; text-decoration:underline;" onclick="showPage('product',${product.id})">Details</a>
+                    <button onclick="addToCart(${product.id})">Add To Cart</button>
+                `;
+                productList.appendChild(card);
+            });
+        }
+        function renderProductDetails(productId){
+            const product = products.find(p=>p.id===productId);
+            currentProduct = product;
+            const detailDiv = document.getElementById('product-detail');
+            if(product){
+                detailDiv.innerHTML = `
+                    <img src="${product.image}" class="product-image" alt="${product.name}">
+                    <h2>${product.name}</h2>
+                    <p>${product.description}</p>
+                    <p><b>Category:</b> ${product.category}</p>
+                    <div class="price">Rs. ${product.price}</div>
+                    <button onclick="addToCart(${product.id})">Add to Cart</button>
+                `;
+            } else {
+                detailDiv.innerHTML = "<p>Product Not Found</p>";
+            }
+        }
+        function renderCart(){
+            const cartDiv = document.getElementById('cart-items');
+            let cart=JSON.parse(localStorage.getItem('cart'))||[];
+            if(cart.length===0){
+                cartDiv.innerHTML="<p>Your cart is empty.</p>";
+            }else{
+                let total=0;
+                cartDiv.innerHTML=cart.map((id,index)=>{
+                    const product=products.find(p=>p.id===id);
+                    total+=product.price;
+                    return `<div>
+                        <span>
+                            <img src="${product.image}" style="width:34px; height:34px; vertical-align:middle; margin-right:16px; border-radius:6px;">
+                            ${product.name}<span style="color:#ff9400;"> Rs. ${product.price}</span>
+                        </span>
+                        <button onclick="removeFromCart(${index})">Remove</button>
+                    </div>`;
+                }).join('');
+                cartDiv.innerHTML+=<div style="text-align:right; font-weight:900; margin-top:18px;color:#ff9400;">Grand Total: Rs. ${total}</div>;
+            }
+        }
+        function addToCart(productId){
+            let cart=JSON.parse(localStorage.getItem('cart'))||[];
+            cart.push(productId);
+            localStorage.setItem('cart',JSON.stringify(cart));
+            alert('Added to cart!');
+        }
+        function removeFromCart(index){
+            let cart=JSON.parse(localStorage.getItem('cart'))||[];
+            cart.splice(index,1);
+            localStorage.setItem('cart',JSON.stringify(cart));
+            renderCart();
+        }
+        function checkout(){
+            alert('Order placed! (Demo Only)');
+            localStorage.removeItem('cart');
+            renderCart();
+        }
+        document.getElementById('loginForm').onsubmit=function(e){
+            e.preventDefault();
+            alert('Login Demo (Backend nahi hai)');
+        };
+        document.getElementById('registerForm').onsubmit=function(e){
+            e.preventDefault();
+            alert('Register Demo (Backend nahi hai)');
+        };
+        showPage('home');
+    </script>
+</body>
+</html>
