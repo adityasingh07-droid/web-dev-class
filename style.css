@@ -1,0 +1,28 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.hero {
+  background: #222;
+  color: #fff;
+  padding: 100px 0;
+}
+
+.hero span {
+  color: #0d6efd;
+}
+
+.social a {
+  font-size: 25px;
+  margin-right: 10px;
+  color: #0d6efd;
+}
+
+img:hover {
+  transform: scale(1.03);
+  transition: .3s;
+}
+
+form button:hover {
+  background: #0b8f2a;
+}
